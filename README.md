@@ -30,7 +30,7 @@ DeleteUser(id int) error // 若用户ID不存在，或其他错误，返回error
 
 对于**网页端**要求，(暂不明），但是由于网页端无法判断用户是否已登录，因此需要服务端来判断。
 
-**判断是否已登录方法：**查看指定路径（在/entity/entity.go里）的curUser.txt文件，里面只存用户ID。若curUser.txt里面存放了用户ID，则用户已登录；若curUser.txt里为空，则未登录。
+**判断是否已登录方法**: 查看指定路径（在/entity/entity.go里）的curUser.txt文件，里面只存用户ID。若curUser.txt里面存放了用户ID，则用户已登录；若curUser.txt里为空，则未登录。
 
 根据用户ID来进行增删改查。
 
