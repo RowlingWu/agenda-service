@@ -10,9 +10,13 @@
 
 实现dockerfile, 构造镜像.
 
+实现登录、登出、注册、删除当前用户、查询所有用户5个功能.
+
 ### 网页端
 
 使用API blueprint,完成网页开发.
+
+实现登录、登出、注册、删除当前用户、查询所有用户5个功能.
 
 ### 服务端
 
@@ -30,9 +34,9 @@ DeleteUser(id int) error // 若用户ID不存在，或其他错误，返回error
 
 对于**网页端**要求，(暂不明），但是由于网页端无法判断用户是否已登录，因此需要服务端来判断。
 
-**判断是否已登录方法**: 查看指定路径（在/entity/entity.go里）的curUser.txt文件，里面只存用户ID。若curUser.txt里面存放了用户ID，则用户已登录；若curUser.txt里为空，则未登录。
+**判断是否已登录方法：**查看指定路径（在/entity/entity.go里）的curUser.txt文件，里面只存用户ID。若curUser.txt里面存放了用户ID，则用户已登录；若curUser.txt里为空，则未登录。
 
-根据用户ID来进行增删改查。
+应该根据用户ID来进行增删改查。
 
 
 # 注意事项
@@ -43,7 +47,5 @@ DeleteUser(id int) error // 若用户ID不存在，或其他错误，返回error
 
 必须阅读agenda项目需求:ex-service-agenda.html
 
-pmlpml博客教程：http://blog.csdn.net/pmlpml/article/details/78727210
+pmlpml博客教程：blog.csdn.net/pmlpml/article/details/78727210
 
-
- 
