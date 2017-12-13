@@ -15,8 +15,10 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
-	"github.com/RowlingWu/agenda/entity"
+
+	"github.com/RowlingWu/agenda-service/entity"
 	"github.com/spf13/cobra"
 )
 
@@ -24,23 +26,24 @@ import (
 var quCmd = &cobra.Command{
 	Use:   "qu",
 	Short: "to find user infomation ",
-	Long: `All user's information.`,
+	Long:  `All user's information.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		                                                                                                                                                                                                            
-		nuser := entity.GetAllUsers();
-		for _,i:= range nuser {
-				fmt.Println("----------------")
-					fmt.Println("Username: ", i.Name)
-					fmt.Println("Telephone number: ", i.Tel)
-					fmt.Println("Email: ", i.Email)
-					fmt.Println("----------------")
-				}
+
+		getUsersURL := testAllUsersURL
+		b := query(getUsersURL)
+		var users []entity.User
+		json.Unmarshal(b, &users)
+		fmt.Println("\n------------------------------------\nAll users' infomation:")
+		for _, u := range users {
+			fmt.Println("{")
+			fmt.Print("\tID: ", u.Id, ",\n\tName: ", u.Name, ",\n\tEmail: ", u.Email, ",\n\tTel: ", u.Tel)
+			fmt.Print("\n}\n")
+		}
 	},
 }
 
 func init() {
 	RootCmd.AddCommand(quCmd)
-	quCmd.Flags().StringP("userinfo", "q", "", "user info display")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
