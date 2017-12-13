@@ -1,4 +1,4 @@
-最后更新时间：12.1 12：50
+最后更新时间：12.13  12:50
 
 
 # 分工
@@ -15,7 +15,7 @@
 
 ### 网页端
 
-使用API blueprint,完成网页开发.
+使用API blueprint，使用服务端接口.
 
 要能**登录、登出、注册、删除当前用户、查询所有用户**.
 
@@ -23,7 +23,7 @@
 
 用sqlite3数据库.
 
-实现service目录的代码.
+实现service目录的代码，提供各种Handler.
 
 
 # 注意事项
@@ -32,6 +32,6 @@
 
 请仔细阅读`User`注释
 
-必须阅读agenda项目需求:ex-service-agenda.html
+必须阅读agenda项目需求: ex-service-agenda.html
 
-pmlpml博客教程：blog.csdn.net/pmlpml/article/details/78727210
+pmlpml博客教程： http://blog.csdn.net/pmlpml/article/details/78727210
