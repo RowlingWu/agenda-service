@@ -1,4 +1,5 @@
 FROM golang:1.8
+FROM sqlite3
 RUN mkdir -p /go/src/github.com/RowlingWu/agenda-service
 ADD . /go/src/github.com/RowlingWu/agenda-service/
 WORKDIR /go/src/github.com/RowlingWu/agenda-service/cli
