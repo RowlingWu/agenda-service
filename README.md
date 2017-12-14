@@ -1,4 +1,4 @@
-![build status](https://travis-ci.org/RowlingWu/agenda-test.svg?branch=master)
+![build status](https://travis-ci.org/RowlingWu/agenda-service.svg?branch=master)
 
 最后更新时间：12.13  22:25
 
