@@ -16,22 +16,23 @@ package cmd
 
 import (
 	"log"
-	"github.com/spf13/cobra"
+
 	"github.com/RowlingWu/agenda/entity"
+	"github.com/spf13/cobra"
 )
 
 // logoutCmd represents the logout command
 var logoutCmd = &cobra.Command{
 	Use:   "logout",
 	Short: "Exit the login status",
-	Long: ``,
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-                sta := entity.Logout()
-                if sta == true {
-		    log.Println("logout successed")
-                } else {
-		    log.Fatal("logout failed. No user logged in")
-                }
+		sta := entity.Logout()
+		if sta == true {
+			log.Println("logout successed")
+		} else {
+			log.Fatal("logout failed. No user logged in")
+		}
 	},
 }
 

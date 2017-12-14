@@ -16,6 +16,7 @@ package cmd
 
 import (
 	"log"
+
 	"github.com/RowlingWu/agenda/entity"
 	"github.com/spf13/cobra"
 )
@@ -24,14 +25,14 @@ import (
 var registerCmd = &cobra.Command{
 	Use:   "register",
 	Short: "to build an account",
-	Long: `build an account, include username, password, email, telephone number`,
+	Long:  `build an account, include username, password, email, telephone number`,
 	Run: func(cmd *cobra.Command, args []string) {
-		name,_:= cmd.Flags().GetString("username")
+		name, _ := cmd.Flags().GetString("username")
 		pw, _ := cmd.Flags().GetString("password")
 		em, _ := cmd.Flags().GetString("email")
 		phone, _ := cmd.Flags().GetString("phone")
 		pass, err := entity.MyRegister(name, pw, em, phone)
-		if pass ==false {
+		if pass == false {
 			log.Fatal("username has been registered, please choose another one")
 		} else {
 			if err != nil {

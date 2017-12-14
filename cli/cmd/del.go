@@ -15,16 +15,17 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
-	"github.com/RowlingWu/agenda/entity"
 	"log"
+
+	"github.com/RowlingWu/agenda/entity"
+	"github.com/spf13/cobra"
 )
 
 // delCmd represents the del command
 var delCmd = &cobra.Command{
 	Use:   "del",
 	Short: "delete current user",
-	Long: ``,
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		// TODO: Work your own magic here
 		// read username from curUser.txt

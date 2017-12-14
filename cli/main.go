@@ -15,7 +15,7 @@
 package main
 
 import (
-	"github.com/RowlingWu/agenda-service/cmd"
+	"github.com/RowlingWu/agenda-service/cli/cmd"
 )
 
 func main() {

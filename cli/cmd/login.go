@@ -16,23 +16,24 @@ package cmd
 
 import (
 	"log"
-	"github.com/spf13/cobra"
+
 	"github.com/RowlingWu/agenda/entity"
+	"github.com/spf13/cobra"
 )
 
 // loginCmd represents the login command
 var loginCmd = &cobra.Command{
 	Use:   "login",
 	Short: "Log in to the system using a identity",
-	Long: ``,
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		username, _ := cmd.Flags().GetString("user")
 		password, _ := cmd.Flags().GetString("password")
-		sta := entity.Login(username,password)
+		sta := entity.Login(username, password)
 		if sta == 0 {
 			log.Println("login successed")
 		} else if sta == 1 {
-        		log.Fatal("login failed. Already logged in")
+			log.Fatal("login failed. Already logged in")
 		} else {
 			log.Fatal("login failed. The username or password incorrect")
 		}
@@ -43,7 +44,6 @@ func init() {
 	RootCmd.AddCommand(loginCmd)
 	loginCmd.Flags().StringP("user", "u", "Anonymous", "Help message for username")
 	loginCmd.Flags().StringP("password", "p", "Anonymous", "Help message for password")
-        
 
 	// Here you will define your flags and configuration settings.
 
