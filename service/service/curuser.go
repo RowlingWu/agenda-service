@@ -3,7 +3,7 @@ package service
 import (
   "encoding/json"
 	"net/http"
-	"agenda-service/service/entities"
+	"github.com/RowlingWu/agenda-service/service/entities"
 	"github.com/satori/go.uuid"
 	"github.com/unrolled/render"
 )

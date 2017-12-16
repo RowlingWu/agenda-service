@@ -1,4 +1,5 @@
 package entities
+
 // curuser's(current user) most functions are similar to userlist
 // used to do log in/out work
 type CurUser struct {
@@ -34,9 +35,9 @@ func (*CuruserServer) MyAdd(curuser *CurUser) {
 }
 
 func (*CuruserServer) MyDelete(duser string) {
+  cur := &CurUser{Username: duser}
   temp := DB.Begin()
-  checkError(temp.Error)
-  if err := temp.Delete(duser).Error; err!=nil {
+  if err := temp.Delete(cur).Error; err!=nil {
     temp.Rollback()
     checkError(err)
   }
