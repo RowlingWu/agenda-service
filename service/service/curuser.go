@@ -44,13 +44,31 @@ func isLogin(r *http.Request) *entities.User {
   return user
 }
 
+func IsLogin(r *http.Request) *entities.User {
+  usernameCookie, err := r.Cookie("username")
+  if err != nil {
+    return nil
+  }
+  username := usernameCookie.Value
+  curuser := entities.CurServ.CurQuery(username)
+  if curuser == nil {
+    return nil
+  }
+  user := entities.UserServ.MyQuery(username)
+  if user == nil {
+    return nil
+  }
+  return user
+}
+
 func isLoginHandler(formatter *render.Render) http.HandlerFunc {
   return func(w http.ResponseWriter, r *http.Request) {
-    if user := isLogin(r); user != nil {
-      formatter.JSON(w,http.StatusOK,user)
-    } else {
-      formatter.JSON(w,http.StatusUnauthorized,struct{}{})
-    }
+//    if user := isLogin(r); user != nil {
+//      formatter.JSON(w,http.StatusOK,user)
+//    } else {
+//      formatter.JSON(w,http.StatusUnauthorized,struct{}{})
+//    }
+    formatter.JSON(w,http.StatusOK,entities.CurServ.CurListAll())
   }
 }
 
@@ -77,9 +95,9 @@ func loginHandler(formatter *render.Render) http.HandlerFunc {
     }
 
  //   if err := json.NewDecoder(r.Body).Decode(&requestBody); err != nil {
-//			w.WriteHeader(http.StatusUnprocessableEntity)
-//			return
-//		}
+//      w.WriteHeader(http.StatusUnprocessableEntity)
+//      return
+//    }
 
     requestBody.Name = r.Form["Name"][0]
     requestBody.Passwd = r.Form["Passwd"][0]
@@ -88,6 +106,7 @@ func loginHandler(formatter *render.Render) http.HandlerFunc {
     if curuser == nil || curuser.Passwd != requestBody.Passwd {
       invalid.MSG = "Wrong username or password"
       formatter.JSON(w,http.StatusUnauthorized,invalid)
+      return
     }
 
     var username string

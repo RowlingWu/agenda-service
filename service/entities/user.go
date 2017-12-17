@@ -64,3 +64,12 @@ func (*UserServer) MyQuery(username string) *User {
   }
   return &userlist[0]
 }
+
+func (*UserServer) MyQueryByName(username string) *User {
+  users := make([]User, 0, 0)
+  checkError(DB.Where([]string{username}).Find(&users).Error)
+  if len(users) == 0 {
+    return nil
+  }
+  return &users[0]
+}

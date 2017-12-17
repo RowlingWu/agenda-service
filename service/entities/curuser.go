@@ -43,6 +43,11 @@ func (*CuruserServer) MyDelete(duser string) {
   }
   temp.Commit()
 }
+func (*CuruserServer) CurListAll() []CurUser {
+  userlist := make([]CurUser,0,0)
+  checkError(DB.Find(&userlist).Error)
+  return userlist
+}
 
 func (*CuruserServer) CurQuery(username string) *CurUser {
   userlist := make([]CurUser,0,0)

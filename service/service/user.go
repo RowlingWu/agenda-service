@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"github.com/RowlingWu/agenda-service/service/entities"
 	"github.com/unrolled/render"
+  "fmt"
 )
 
 func registerHandler(formatter *render.Render) http.HandlerFunc {
@@ -27,10 +28,19 @@ func registerHandler(formatter *render.Render) http.HandlerFunc {
 
 func deleteHandler(formatter *render.Render) http.HandlerFunc {
   return func(w http.ResponseWriter, r *http.Request) {
-    user := isLogin(r)
+  // user := IsLogin(r)
+   //fmt.Println(user.Name)
+    // TODO: delete meetings
+    // ...
+    curuserlist := entities.CurServ.CurListAll()
+    username := curuserlist[0].Username
+    fmt.Println(username)
+    user := entities.UserServ.MyQueryByName(username)
+    fmt.Println("find user"+ user.Name)
     entities.UserServ.MyDelete(user)
-    logoutHandler(formatter)(w,r)
-  }
+    entities.CurServ.MyDelete(username)
+    w.WriteHeader(http.StatusOK)
+    }
 }
 
 func listAllUsersHandler(formatter *render.Render) http.HandlerFunc {
