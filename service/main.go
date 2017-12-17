@@ -1,7 +1,7 @@
 package main
 import (
-    "agenda-service/service/entities"
-    "agenda-service/service/service"
+    "github.com/RowlingWu/agenda-service/service/entities"
+    "github.com/RowlingWu/agenda-service/service/service"
     "os"
     flag "github.com/spf13/pflag"
 )
