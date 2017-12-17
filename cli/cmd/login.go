@@ -15,46 +15,46 @@
 package cmd
 
 import (
-	"encoding/json"
-	"fmt"
+	"log"
+	"os"
 
 	"github.com/RowlingWu/agenda-service/entity"
 	"github.com/spf13/cobra"
 )
 
-// quCmd represents the qu command
-var quCmd = &cobra.Command{
-	Use:   "qu",
-	Short: "to find user infomation ",
-	Long:  `All user's information.`,
+// loginCmd represents the login command
+var loginCmd = &cobra.Command{
+	Use:   "login",
+	Short: "Log in to the system using an identity",
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
+		username, _ := cmd.Flags().GetString("user")
+		password, _ := cmd.Flags().GetString("password")
 
-		getUsersURL := entity.Localhost + "/v1/users"
-		b, err := query(getUsersURL)
+		err := login(username, password, entity.Localhost+"/v1/user/login")
 		checkError(err)
+		log.Println("Log in success.")
 
-		var users []entity.User
-		err = json.Unmarshal(b, &users)
+		f, err := os.OpenFile(entity.CurUser, os.O_WRONLY|os.O_CREATE, 0666)
+		defer f.Close()
 		checkError(err)
-
-		fmt.Println("\n------------------------------------\nAll users' infomation:")
-		for _, u := range users {
-			fmt.Println("{")
-			fmt.Print("\tID: ", u.Id, ",\n\tName: ", u.Name, ",\n\tEmail: ", u.Email, ",\n\tTel: ", u.Tel)
-			fmt.Print("\n}\n")
-		}
+		f.WriteString(username)
 	},
 }
 
 func init() {
-	RootCmd.AddCommand(quCmd)
+	RootCmd.AddCommand(loginCmd)
+	loginCmd.Flags().StringP("user", "u", "Anonymous", "Help message for username")
+	loginCmd.Flags().StringP("password", "p", "Anonymous", "Help message for password")
+
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// quCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// loginCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// quCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// loginCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
 }

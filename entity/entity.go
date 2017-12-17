@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"os"
+	"os/user"
+)
+
 // User is used as a format in sqlite's table.
 type User struct {
 	// Id should BE a primary key, auto-increment, not null
@@ -12,8 +17,9 @@ type User struct {
 	Tel    string
 }
 
+const Localhost = "http://localhost:8080"
+
 // check whether user has logged in
-/*
 var (
 	// CurUser is the path where curUser.txt is stored
 	CurUser string
@@ -31,7 +37,6 @@ func init() {
 		checkError(err)
 	}
 }
-*/
 
 func checkError(err error) {
 	if err != nil {

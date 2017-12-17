@@ -15,46 +15,49 @@
 package cmd
 
 import (
-	"encoding/json"
-	"fmt"
-
-	"github.com/RowlingWu/agenda-service/entity"
 	"github.com/spf13/cobra"
+	"github.com/RowlingWu/agenda/entity"
+	"log"
 )
 
-// quCmd represents the qu command
-var quCmd = &cobra.Command{
-	Use:   "qu",
-	Short: "to find user infomation ",
-	Long:  `All user's information.`,
+// delCmd represents the del command
+var delCmd = &cobra.Command{
+	Use:   "del",
+	Short: "delete current user",
+	Long: ``,
 	Run: func(cmd *cobra.Command, args []string) {
-
-		getUsersURL := entity.Localhost + "/v1/users"
-		b, err := query(getUsersURL)
-		checkError(err)
-
-		var users []entity.User
-		err = json.Unmarshal(b, &users)
-		checkError(err)
-
-		fmt.Println("\n------------------------------------\nAll users' infomation:")
-		for _, u := range users {
-			fmt.Println("{")
-			fmt.Print("\tID: ", u.Id, ",\n\tName: ", u.Name, ",\n\tEmail: ", u.Email, ",\n\tTel: ", u.Tel)
-			fmt.Print("\n}\n")
+		// TODO: Work your own magic here
+		// read username from curUser.txt
+		log.Println("read info of the current user...")
+		name, ok := entity.ReadCur()
+		if ok == 1 {
+			log.Fatal("fatal: please log in first")
 		}
+		if ok == 2 {
+			log.Fatal("failed to delete current user")
+		}
+
+		// clear curUser.txt
+		log.Println("delete current user...")
+		// seek userInfo in userInfo.txt and delete it
+		f := entity.SeekUsr(name)
+		if !f {
+			log.Fatal("failed to delete current user")
+		}
+		log.Println("success in deleting current user")
 	},
 }
 
 func init() {
-	RootCmd.AddCommand(quCmd)
+	RootCmd.AddCommand(delCmd)
+
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// quCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// delCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// quCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// delCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

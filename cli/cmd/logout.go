@@ -15,46 +15,42 @@
 package cmd
 
 import (
-	"encoding/json"
-	"fmt"
+	"bufio"
+	"os"
 
 	"github.com/RowlingWu/agenda-service/entity"
 	"github.com/spf13/cobra"
 )
 
-// quCmd represents the qu command
-var quCmd = &cobra.Command{
-	Use:   "qu",
-	Short: "to find user infomation ",
-	Long:  `All user's information.`,
+// logoutCmd represents the logout command
+var logoutCmd = &cobra.Command{
+	Use:   "logout",
+	Short: "Exit the login status",
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-
-		getUsersURL := entity.Localhost + "/v1/users"
-		b, err := query(getUsersURL)
+		f, err := os.Open(entity.CurUser)
 		checkError(err)
+		defer f.Close()
 
-		var users []entity.User
-		err = json.Unmarshal(b, &users)
+		line := bufio.NewScanner(f)
+		line.Scan()
+		name := line.Text()
+		err = logout(name, entity.Localhost+"/v1/user/logout")
 		checkError(err)
-
-		fmt.Println("\n------------------------------------\nAll users' infomation:")
-		for _, u := range users {
-			fmt.Println("{")
-			fmt.Print("\tID: ", u.Id, ",\n\tName: ", u.Name, ",\n\tEmail: ", u.Email, ",\n\tTel: ", u.Tel)
-			fmt.Print("\n}\n")
-		}
 	},
 }
 
 func init() {
-	RootCmd.AddCommand(quCmd)
+	RootCmd.AddCommand(logoutCmd)
+
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// quCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// logoutCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// quCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// logoutCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
 }

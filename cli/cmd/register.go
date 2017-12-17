@@ -15,46 +15,42 @@
 package cmd
 
 import (
-	"encoding/json"
-	"fmt"
+	"log"
 
 	"github.com/RowlingWu/agenda-service/entity"
 	"github.com/spf13/cobra"
 )
 
-// quCmd represents the qu command
-var quCmd = &cobra.Command{
-	Use:   "qu",
-	Short: "to find user infomation ",
-	Long:  `All user's information.`,
+// registerCmd represents the register command
+var registerCmd = &cobra.Command{
+	Use:   "register",
+	Short: "to build an account",
+	Long:  `build an account, include username, password, email, telephone number`,
 	Run: func(cmd *cobra.Command, args []string) {
+		name, _ := cmd.Flags().GetString("username")
+		pw, _ := cmd.Flags().GetString("password")
+		em, _ := cmd.Flags().GetString("email")
+		phone, _ := cmd.Flags().GetString("phone")
 
-		getUsersURL := entity.Localhost + "/v1/users"
-		b, err := query(getUsersURL)
+		err := register(&entity.User{Name: name, Passwd: pw, Email: em, Tel: phone}, entity.Localhost+"/v1/users")
 		checkError(err)
-
-		var users []entity.User
-		err = json.Unmarshal(b, &users)
-		checkError(err)
-
-		fmt.Println("\n------------------------------------\nAll users' infomation:")
-		for _, u := range users {
-			fmt.Println("{")
-			fmt.Print("\tID: ", u.Id, ",\n\tName: ", u.Name, ",\n\tEmail: ", u.Email, ",\n\tTel: ", u.Tel)
-			fmt.Print("\n}\n")
-		}
+		log.Println("Register success.")
 	},
 }
 
 func init() {
-	RootCmd.AddCommand(quCmd)
+	RootCmd.AddCommand(registerCmd)
+	registerCmd.Flags().StringP("username", "u", "", "username")
+	registerCmd.Flags().StringP("password", "p", "", "password")
+	registerCmd.Flags().StringP("email", "e", "", "user's email")
+	registerCmd.Flags().StringP("phone", "t", "", "user's phone number")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// quCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// registerCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// quCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// registerCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

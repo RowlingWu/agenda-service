@@ -15,46 +15,34 @@
 package cmd
 
 import (
-	"encoding/json"
-	"fmt"
+	"log"
 
 	"github.com/RowlingWu/agenda-service/entity"
 	"github.com/spf13/cobra"
 )
 
-// quCmd represents the qu command
-var quCmd = &cobra.Command{
-	Use:   "qu",
-	Short: "to find user infomation ",
-	Long:  `All user's information.`,
+// statusCmd represents the status command
+var statusCmd = &cobra.Command{
+	Use:   "status",
+	Short: "return the status whether the user has logged in",
+	Long:  `Return the current logged in user name if the user has loggin in, else return a non-logged-in status.`,
 	Run: func(cmd *cobra.Command, args []string) {
-
-		getUsersURL := entity.Localhost + "/v1/users"
-		b, err := query(getUsersURL)
+		b, err := isLogin(entity.Localhost + "/v1/user/login")
 		checkError(err)
-
-		var users []entity.User
-		err = json.Unmarshal(b, &users)
-		checkError(err)
-
-		fmt.Println("\n------------------------------------\nAll users' infomation:")
-		for _, u := range users {
-			fmt.Println("{")
-			fmt.Print("\tID: ", u.Id, ",\n\tName: ", u.Name, ",\n\tEmail: ", u.Email, ",\n\tTel: ", u.Tel)
-			fmt.Print("\n}\n")
-		}
+		log.Println(string(b))
 	},
 }
 
 func init() {
-	RootCmd.AddCommand(quCmd)
+	RootCmd.AddCommand(statusCmd)
+
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// quCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// statusCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// quCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// statusCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
