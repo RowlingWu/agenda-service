@@ -3,6 +3,7 @@ package entities_test
 import (
 	"github.com/RowlingWu/agenda-service/service/entities"
 	"testing"
+	"fmt"
 )
 
 func TestUser(t *testing.T) {
@@ -15,9 +16,11 @@ func TestUser(t *testing.T) {
 		Tel:    "1234567890",
 	}
 	entities.UserServ.MyAdd(u)
+	fmt.Println("check add")
 	if entities.UserServ.MyQuery(username) == nil {
 		t.Fatalf("cannot find user added just now, add failed")
 	}
 	t.Log("delete the test user")
 	entities.UserServ.MyDelete(u)
 }
+        

@@ -5,6 +5,7 @@ import (
 	"go/build"
 	"runtime"
 	"testing"
+	"fmt"
 )
 
 func init() {
@@ -17,6 +18,7 @@ func init() {
 
 func TestCurUser(t *testing.T) {
 	t.Log("test curuser MyAdd")
+	fmt.Println("check cur add")
         username := "TEST"
 	entities.CurServ.MyAdd(&entities.CurUser{
 		Username: username,

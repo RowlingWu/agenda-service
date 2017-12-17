@@ -1,7 +1,6 @@
 package service
 
 import (
-  "encoding/json"
 	"net/http"
 	"github.com/RowlingWu/agenda-service/service/entities"
 	"github.com/satori/go.uuid"
@@ -27,11 +26,13 @@ func (h *CheckIsLoginHandler) ServeHTTP(w http.ResponseWriter, r *http.Request, 
 }
 
 func isLogin(r *http.Request) *entities.User {
-  usernameCookie, err := r.Cookie("username")
-  if err != nil {
-    return nil
-  }
-  username := usernameCookie.Value
+  r.ParseForm()
+  username := r.Form["Name"][0]
+//  usernameCookie, err := r.Cookie("username")
+//  if err != nil {
+//    return nil
+//  }
+// username := usernameCookie.Value
   curuser := entities.CurServ.CurQuery(username)
   if curuser == nil {
     return nil
@@ -55,9 +56,15 @@ func isLoginHandler(formatter *render.Render) http.HandlerFunc {
 
 func loginHandler(formatter *render.Render) http.HandlerFunc {
   return func(w http.ResponseWriter, r *http.Request) {
+    r.ParseForm()
+//    var user entities.User
+//    user.Name = r.Form["Name"][0]
+//    user.Passwd = r.Form["Passwd"][0]
+
     var invalid struct {
       MSG string `json:"msg"`
     }
+
     if user:=isLogin(r); user != nil {
       invalid.MSG = "Please log out " + user.Name +" first"
       formatter.JSON(w,http.StatusBadRequest,invalid)
@@ -68,13 +75,17 @@ func loginHandler(formatter *render.Render) http.HandlerFunc {
       Name string `json:Name`
       Passwd string `json:Passwd`
     }
-    if err := json.NewDecoder(r.Body).Decode(&requestBody); err != nil {
-			w.WriteHeader(http.StatusUnprocessableEntity)
-			return
-		}
 
-    user := entities.UserServ.MyQuery(requestBody.Name)
-    if user == nil || user.Passwd != requestBody.Passwd {
+ //   if err := json.NewDecoder(r.Body).Decode(&requestBody); err != nil {
+//			w.WriteHeader(http.StatusUnprocessableEntity)
+//			return
+//		}
+
+    requestBody.Name = r.Form["Name"][0]
+    requestBody.Passwd = r.Form["Passwd"][0]
+
+    curuser := entities.UserServ.MyQuery(requestBody.Name)
+    if curuser == nil || curuser.Passwd != requestBody.Passwd {
       invalid.MSG = "Wrong username or password"
       formatter.JSON(w,http.StatusUnauthorized,invalid)
     }
@@ -101,8 +112,10 @@ func loginHandler(formatter *render.Render) http.HandlerFunc {
 
 func logoutHandler(formatter *render.Render) http.HandlerFunc {
   return func(w http.ResponseWriter, r *http.Request) {
-    usernameCookie,_:=r.Cookie("username")
-    username := usernameCookie.Value
+    r.ParseForm()
+//    usernameCookie,_:=r.Cookie("username")
+  //  username := usernameCookie.Value
+    username:=r.Form["Name"][0]
     entities.CurServ.MyDelete(username)
     w.WriteHeader(http.StatusOK)
   }
