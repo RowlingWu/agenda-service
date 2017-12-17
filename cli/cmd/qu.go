@@ -25,8 +25,8 @@ import (
 // quCmd represents the qu command
 var quCmd = &cobra.Command{
 	Use:   "qu",
-	Short: "to find user infomation ",
-	Long:  `All user's information.`,
+	Short: "get all users' infomation ",
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		getUsersURL := entity.Localhost + "/v1/users"
