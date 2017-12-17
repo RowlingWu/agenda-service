@@ -13,6 +13,7 @@ var testRegisterURL = ""
 var testLoginURL = ""
 var testLogoutURL = ""
 var testIsLoginURL = ""
+var testDeleteURL = ""
 
 // users got from API mocker server should be the same as testAllUsers
 var testAllUsers = []entity.User{{1, "usertest", "secret", "xxx@qq.com", "136"}, {2, "xxx", "sec", "abc@mail.com", "199"}}
@@ -49,6 +50,11 @@ func TestLogout(t *testing.T) {
 
 func TestIsLogin(t *testing.T) {
 	_, err := isLogin(testIsLoginURL)
+	logError(err, t)
+}
+
+func TestDeleteUser(t *testing.T) {
+	_, err := deleteUser(testDeleteURL)
 	logError(err, t)
 }
 

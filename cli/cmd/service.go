@@ -83,6 +83,33 @@ func isLogin(rurl string) ([]byte, error) {
 	return body, nil
 }
 
+func deleteUser(rurl string) (bool, error) {
+	client := &http.Client{}
+	req, err := http.NewRequest("DELETE", rurl, nil)
+	if err != nil {
+		return false, err
+	}
+
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	resp, err := client.Do(req)
+	if err != nil {
+		return false, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode == 200 {
+		return true, nil
+	}
+	if resp.StatusCode == 401 {
+		return false, nil
+	}
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return false, err
+	}
+	return false, errors.New(resp.Status + "\n" + string(body))
+}
+
 func checkError(err error) {
 	if err != nil {
 		panic(err)

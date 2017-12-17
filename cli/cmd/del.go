@@ -15,36 +15,26 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
-	"github.com/RowlingWu/agenda/entity"
 	"log"
+
+	"github.com/RowlingWu/agenda-service/entity"
+	"github.com/spf13/cobra"
 )
 
 // delCmd represents the del command
 var delCmd = &cobra.Command{
 	Use:   "del",
 	Short: "delete current user",
-	Long: ``,
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		// TODO: Work your own magic here
-		// read username from curUser.txt
-		log.Println("read info of the current user...")
-		name, ok := entity.ReadCur()
-		if ok == 1 {
-			log.Fatal("fatal: please log in first")
+		ok, err := deleteUser(entity.Localhost + "/v1/user/self")
+		checkError(err)
+		if ok {
+			log.Println("Delete user success.")
+		} else {
+			log.Println("Failed to delete user. Have you logged in?")
 		}
-		if ok == 2 {
-			log.Fatal("failed to delete current user")
-		}
-
-		// clear curUser.txt
-		log.Println("delete current user...")
-		// seek userInfo in userInfo.txt and delete it
-		f := entity.SeekUsr(name)
-		if !f {
-			log.Fatal("failed to delete current user")
-		}
-		log.Println("success in deleting current user")
 	},
 }
 

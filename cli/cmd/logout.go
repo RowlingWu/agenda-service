@@ -16,6 +16,7 @@ package cmd
 
 import (
 	"bufio"
+	"log"
 	"os"
 
 	"github.com/RowlingWu/agenda-service/entity"
@@ -37,6 +38,7 @@ var logoutCmd = &cobra.Command{
 		name := line.Text()
 		err = logout(name, entity.Localhost+"/v1/user/logout")
 		checkError(err)
+		log.Println("log out success")
 	},
 }
 
