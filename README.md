@@ -58,10 +58,6 @@
 
 （此处填写镜像使用结果）
 
-## 使用命令行
-
-（此处填写命令行使用结果）
-
 ## cli mock测试
 
 （此处填写cli mock测试结果）
@@ -93,6 +89,65 @@
 #### 进行以上操作时的监听窗口：（405 输错命令）
 
 ![这里写图片描述](http://img.blog.csdn.net/20171218150351279?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGVwcmVjaGF1bl8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+## 使用命令行（综合测试）
+
+ - 初始状态，没有任何用户，也没有登录的用户
+ 
+ ![初始状态](http://img.blog.csdn.net/20171218163008735?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+ 
+	直接访问服务端，返回的用户列表为空
+
+	![curl列出所有用户](http://img.blog.csdn.net/20171218163339737?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+	没有用户登录
+
+	![这里写图片描述](http://img.blog.csdn.net/20171218163559021?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ - 注册一个新用户
+ 
+	![注册&查询](http://img.blog.csdn.net/20171218165518718?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+	服务端后台信息：
+
+	![服务端后台信息-注册](http://img.blog.csdn.net/20171218171705159?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+	访问服务端验证，返回了刚才注册的用户信息
+
+	![注册&查所有用户](http://img.blog.csdn.net/20171218165801334?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ - 登录，并再次查询登录状态
+
+	![登录&查询登录状态](http://img.blog.csdn.net/20171218170049702?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+	服务端后台信息：
+
+	![服务端后台信息-登录](http://img.blog.csdn.net/20171218171537708?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+	访问服务器，验证登录状态
+
+	![curl登陆后访问登录状态](http://img.blog.csdn.net/20171218170306081?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ - 登出，并直接访问服务端验证
+
+	![这里写图片描述](http://img.blog.csdn.net/20171218170531079?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+	服务端后台信息：
+
+	![服务端后台信息-登出](http://img.blog.csdn.net/20171218171353655?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+	服务端显示没有登录的用户：
+
+	![这里写图片描述](http://img.blog.csdn.net/20171218170715830?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+
+ - 删除该用户（先登录，再删除）
+
+	![删除用户](http://img.blog.csdn.net/20171218170950552?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+	服务端后台信息：
+
+	![服务端后台信息-登录，删除用户](http://img.blog.csdn.net/20171218171150025?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
 
