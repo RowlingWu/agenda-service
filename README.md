@@ -1,44 +1,30 @@
 ![build status](https://travis-ci.org/RowlingWu/agenda-service.svg?branch=master)
 
-最后更新时间：12.13  22:25
+# 使用说明
+
+## 客户端使用说明
+
+（此处填写客户端使用说明）
+
+## 服务端使用说明
+
+（此处填写服务端使用说明）
 
 
-# 分工
+# 测试结果
 
-项目共分3部分：客户端，服务端，网页端
+## 使用镜像
 
-### 客户端
+（此处填写镜像使用结果）
 
-实现cli目录的代码,通过**使用服务端的接口**,实现在容器内注册和查询等功能.
+## 使用命令行
 
-实现dockerfile, 构造镜像.
+（此处填写命令行使用结果）
 
-实现登录、登出、注册、删除当前用户、查询所有用户5个功能.
+## cli mock测试
 
-**客户端**应该是一个独立程序，有自己的main入口，类似于agenda项目，只不过不会访问数据库，而是通过GET, POST链接等访问服务端。
+（此处填写cli mock测试结果）
 
-### 网页端
+## service测试
 
-使用API blueprint，使用服务端接口.
-
-要能**登录、登出、注册、删除当前用户、查询所有用户**.
-
-### 服务端
-
-用sqlite3数据库.
-
-实现service目录的代码，提供各种Handler.
-
-**服务端**应该是一个独立程序，有自己的main入口，类似于之前cloudgo-data作业，处理各种GET, POST请求并response。
-
-
-
-# 注意事项
-
-项目全过程使用`entity/entity.go`::`User`结构
-
-请仔细阅读`User`注释
-
-必须阅读agenda项目需求: ex-service-agenda.html
-
-pmlpml博客教程： http://blog.csdn.net/pmlpml/article/details/78727210
+（此处填写service测试结果）
