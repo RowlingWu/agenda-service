@@ -1,0 +1,184 @@
+FORMAT: 1A
+HOST: http://agenda12.apiblueprint.org/
+
+# Agenda
+
+Agenda is a simple API allowing consumers to schedule meeting on-line
+
+
+
+# Group User
+
+Resources related to a users in the API.
+
+## Users [/v1/user/users]
+
+
+### listAllHandler [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "ld": "1"
+                "Name": "agenda"
+                "Passwd": "123456"
+                "Email": "agendaserver@111.com"
+                "Tel": "123456789"
+            },{
+                "ld": "1"
+                "Name": "Tom"
+                "Passwd": "123456"
+                "Email": "agendaserver@222.com"
+                "Tel": "0987654321"
+            }
+        ]
+
+### resigterHandler [POST]
+
++ Request (application/json)
+
+        {
+            "Name": "Tom"
+            "Passwd": "123456"
+            "Email": "agendaserver@222.com"
+            "Tel": "0987654321"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /users
+
+    + Body
+    
+            {
+                "Name": "Tom"
+                "Passwd": "123456"
+                "Email": "agendaserver@222.com"
+                "Tel": "0987654321"
+            }
+
+    
+
+            
+            
+            
+            
+            
+            
+            
+        
+## Login [/v1/user/login]
+
+    
+### isLoginHandler [GET /v1/user/login/{username}]
+
++ Parameters
+    - username : `admin` (string, required)
+
++ Response 200 (application/json)
+
+        {
+            "username": "admin"
+        }
+        
+    
+### loginHandler [POST]
+
++ Request (application/json)
+
+        {
+            "Name": "admin"
+            "Passwd": "agenda"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "msg": "Logged in successfully"
+        }
+        
+        
+    
+    
+    
+    
+    
+    
+    
+    
+## Logout [/v1/user/logout]
+        
+### logoutHandler [POST]
+
++ Request (application/json)
+
+        {
+            "Name": "admin"
+        }
+        
++ Response 201  (application/json)
+
+    + Headers
+        
+            Location: /logout
+        
+    + Body
+    
+            {
+                "Name": "admin"
+            }
+        
+        
+        
+
+
+
+## Self [/v1/user/self]
+
+### deleteHandler [DELETE]
+
++ Response 204
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+
+# Group Meetings
+
+## New Meeting [/v1/meeting/NewMeeting]
+
+### Create Meeting [POST]
+
+
++ Request (application/json)
+
+        {
+            "title":"yup"
+            "participants":"zhang"
+            "start_time":"1111"
+            "end_time":"22222"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /meeting/NewMeeting/yup
+
+    + Body
+
+            {
+            "title":"yup"
+            "participants":"zhang"
+            "start_time":"1111"
+            "end_time":"22222"
+            }
