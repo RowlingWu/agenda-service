@@ -4,7 +4,37 @@
 
 ## 客户端使用说明
 
-（此处填写客户端使用说明）
+1. 列出所有用户
+
+`cli qu`
+
+2. 查询登录状态（未登录或已登录）
+
+`cli status`
+
+3. 注册
+
+`cli register -u [username] -p [password] -e [Email] -t [Telephone]`
+
+例如：
+
+`cli register -u myuser -p 123456 -e my@qq.com -t 13600001111`
+
+4. 登录
+
+`cli login -u [username] -p [password]`
+
+例如：
+
+`cli login -u myuser -p 123456`
+
+5. 删除当前用户
+
+`cli del`
+
+6. 登出
+
+`cli logout`
 
 ## 服务端使用说明
 
