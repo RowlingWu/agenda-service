@@ -29,7 +29,11 @@ var statusCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		b, err := isLogin(entity.Localhost + "/v1/user/login")
 		checkError(err)
-		log.Println(string(b))
+		if len(b) < 4 {
+			log.Println("No user logged in.")
+		} else {
+			log.Println("Log in info: ", string(b))
+		}
 	},
 }
 
