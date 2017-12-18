@@ -56,7 +56,25 @@
 
 ## 使用镜像
 
-（此处填写镜像使用结果）
+ - 从仓库拉取镜像，输入`docker pull registry.cn-shenzhen.aliyuncs.com/rl/agenda-service`
+
+	![拉取镜像docker pull](http://img.blog.csdn.net/20171218173244590?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ - 输入`docker images`验证已拉取该镜像
+
+	![这里写图片描述](http://img.blog.csdn.net/20171218173441772?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ - 创建容器，在后台运行（此时运行的是服务端）`docker run  -p 8080:8080 --name agendad -d registry.cn-shenzhen.aliyuncs.com/rl/agenda-service`
+
+	![docker run 后台运行服务端](http://img.blog.csdn.net/20171218173718855?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ - 创建容器，运行`"sh"`进程，这就运行了客户端了。`docker run -it --name agenda-service --rm --net host registry.cn-shenzhen.aliyuncs.com/rl/agenda-service "sh"`
+
+	![docker run 客户端](http://img.blog.csdn.net/20171218174012648?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ - 验证创建的容器，发现已经创建了`agendad`后台服务端和`agenda-service`客户端了（另打开一个终端，输入`docker ps -a`。不要在客户端exit，不然客户端容器就删除了）
+
+	![docker ps -a](http://img.blog.csdn.net/20171218174652823?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ## cli mock测试
 
