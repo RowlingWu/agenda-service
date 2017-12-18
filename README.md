@@ -4,6 +4,8 @@
 
 ## 客户端使用说明
 
+**注意**：使用客户端前，请先运行服务端：`cd /agenda-service/service`, `go run main.go`
+
 1. 列出所有用户：`cli qu`
 
 2. 查询登录状态（未登录或已登录）：`cli status`
