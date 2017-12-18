@@ -110,7 +110,7 @@
 
 	服务端后台信息：
 
-	![服务端后台信息-注册](http://img.blog.csdn.net/20171218171705159?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+	![服务端后台信息-注册](http://img.blog.csdn.net/20171218172358019?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 	访问服务端验证，返回了刚才注册的用户信息
 
