@@ -39,7 +39,7 @@ func deleteHandler(formatter *render.Render) http.HandlerFunc {
     fmt.Println("find user"+ user.Name)
     entities.UserServ.MyDelete(user)
     entities.CurServ.MyDelete(username)
-    w.WriteHeader(http.StatusOK)
+    w.WriteHeader(http.StatusNoContent)
     }
 }
 
