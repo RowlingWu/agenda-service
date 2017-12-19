@@ -8,15 +8,25 @@ import (
 )
 
 // test from  API mocker server
-var testAllUsersURL = "https://private-59ac4-test15398.apiary-mock.com/v1/user/getkey?username=root&password=pass"
-var testRegisterURL = ""
-var testLoginURL = ""
-var testLogoutURL = ""
-var testIsLoginURL = ""
-var testDeleteURL = ""
+var testAllUsersURL = "https://private-7ef3f4-agenda30.apiary-mock.com/v1/user/users"
+var testRegisterURL = "https://private-7ef3f4-agenda30.apiary-mock.com/v1/user/users"
+var testLoginURL = "https://private-7ef3f4-agenda30.apiary-mock.com/v1/user/login"
+var testLogoutURL = "https://private-7ef3f4-agenda30.apiary-mock.com/v1/user/logout"
+var testIsLoginURL = "https://private-7ef3f4-agenda30.apiary-mock.com/v1/user/login/admin"
+var testDeleteURL = "https://private-7ef3f4-agenda30.apiary-mock.com/v1/user/self"
 
 // users got from API mocker server should be the same as testAllUsers
-var testAllUsers = []entity.User{{1, "usertest", "secret", "xxx@qq.com", "136"}, {2, "xxx", "sec", "abc@mail.com", "199"}}
+var testAllUsers = []entity.User{{
+	1,
+	"agenda",
+	"123456",
+	"agendaserver@111.com",
+	"123456789"}, {
+	1,
+	"Tom",
+	"123456",
+	"agendaserver@222.com",
+	"0987654321"}}
 
 func TestQuery(t *testing.T) {
 	b, err := query(testAllUsersURL)
@@ -39,7 +49,7 @@ func TestRegister(t *testing.T) {
 }
 
 func TestLogin(t *testing.T) {
-	err := login("", "", testLoginURL)
+	err := login("xxx", "xxx", testLoginURL)
 	logError(err, t)
 }
 

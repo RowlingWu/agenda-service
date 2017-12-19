@@ -97,7 +97,7 @@ func deleteUser(rurl string) (bool, error) {
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode == 200 {
+	if resp.StatusCode == 204 {
 		return true, nil
 	}
 	if resp.StatusCode == 401 {
