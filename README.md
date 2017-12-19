@@ -108,6 +108,12 @@
 
 ![这里写图片描述](http://img.blog.csdn.net/20171218150351279?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGVwcmVjaGF1bl8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
+####  将删除用户时返回值改为StatusNoContent
+
+建立、登陆用户后删除该用户，监听窗口显示为204
+
+![这里写图片描述](http://img.blog.csdn.net/20171219204655827?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGVwcmVjaGF1bl8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ## 使用命令行（综合测试）
 
  - 初始状态，没有任何用户，也没有登录的用户
