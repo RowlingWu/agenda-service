@@ -20,16 +20,16 @@ Resources related to a users in the API.
 
         [
             {
-                "ld": "1"
-                "Name": "agenda"
-                "Passwd": "123456"
-                "Email": "agendaserver@111.com"
+                "ld": 1¡A
+                "Name": "agenda"¡A
+                "Passwd": "123456"¡A
+                "Email": "agendaserver@111.com"¡A
                 "Tel": "123456789"
             },{
-                "ld": "1"
-                "Name": "Tom"
-                "Passwd": "123456"
-                "Email": "agendaserver@222.com"
+                "ld": 1¡A
+                "Name": "Tom"¡A
+                "Passwd": "123456"¡A
+                "Email": "agendaserver@222.com"¡A
                 "Tel": "0987654321"
             }
         ]
@@ -39,9 +39,9 @@ Resources related to a users in the API.
 + Request (application/json)
 
         {
-            "Name": "Tom"
-            "Passwd": "123456"
-            "Email": "agendaserver@222.com"
+            "Name": "Tom"¡A
+            "Passwd": "123456"¡A
+            "Email": "agendaserver@222.com"¡A
             "Tel": "0987654321"
         }
 
@@ -54,9 +54,9 @@ Resources related to a users in the API.
     + Body
     
             {
-                "Name": "Tom"
-                "Passwd": "123456"
-                "Email": "agendaserver@222.com"
+                "Name": "Tom"¡A
+                "Passwd": "123456"¡A
+                "Email": "agendaserver@222.com"¡A
                 "Tel": "0987654321"
             }
 
@@ -90,7 +90,7 @@ Resources related to a users in the API.
 + Request (application/json)
 
         {
-            "Name": "admin"
+            "Name": "admin"¡A
             "Passwd": "agenda"
         }
 
@@ -119,7 +119,7 @@ Resources related to a users in the API.
             "Name": "admin"
         }
         
-+ Response 201  (application/json)
++ Response 200  (application/json)
 
     + Headers
         
@@ -150,35 +150,3 @@ Resources related to a users in the API.
         
         
         
-
-
-# Group Meetings
-
-## New Meeting [/v1/meeting/NewMeeting]
-
-### Create Meeting [POST]
-
-
-+ Request (application/json)
-
-        {
-            "title":"yup"
-            "participants":"zhang"
-            "start_time":"1111"
-            "end_time":"22222"
-        }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /meeting/NewMeeting/yup
-
-    + Body
-
-            {
-            "title":"yup"
-            "participants":"zhang"
-            "start_time":"1111"
-            "end_time":"22222"
-            }
