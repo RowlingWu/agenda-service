@@ -31,6 +31,7 @@ var testAllUsers = []entity.User{{
 func TestQuery(t *testing.T) {
 	b, err := query(testAllUsersURL)
 	logError(err, t)
+	t.Log("Success in accessing ListAllUsers' URL(mock).")
 
 	var users []entity.User
 	err = json.Unmarshal(b, &users)
@@ -41,31 +42,38 @@ func TestQuery(t *testing.T) {
 			t.Fatal("getUsers not equal to setUsers", "getUsers:", u, "setUsers:", testAllUsers[i])
 		}
 	}
+
+	t.Log("Users got from mock URL are correct")
 }
 
 func TestRegister(t *testing.T) {
 	err := register(&entity.User{}, testRegisterURL)
 	logError(err, t)
+	t.Log("Success in accessing Register's URL(mock)\nStatus is 201 Created")
 }
 
 func TestLogin(t *testing.T) {
 	err := login("xxx", "xxx", testLoginURL)
 	logError(err, t)
+	t.Log("Success in accessing Login's URL(mock)\nStatus is 200 OK")
 }
 
 func TestLogout(t *testing.T) {
 	err := logout("", testLogoutURL)
 	logError(err, t)
+	t.Log("Success in accessing Logout's URL(mock).\nStatus is 200 OK")
 }
 
 func TestIsLogin(t *testing.T) {
 	_, err := isLogin(testIsLoginURL)
 	logError(err, t)
+	t.Log("Success in accessing LoginStatus' URL(mock)\nReturned user's log status")
 }
 
 func TestDeleteUser(t *testing.T) {
 	_, err := deleteUser(testDeleteURL)
 	logError(err, t)
+	t.Log("Success in accessing DeleteUser's URL(mock)\nReturned the result of DeleteUser")
 }
 
 func logError(err error, t *testing.T) {

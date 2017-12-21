@@ -78,7 +78,36 @@
 
 ## cli mock测试
 
-（此处填写cli mock测试结果）
+先附上所有测试结果：
+
+![go test结果](http://img.blog.csdn.net/20171221142845316?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+###TestQuery 查询所有用户测试
+
+go test测试文件和apiary文件输入相同的User信息，查看访问的User信息与test中的是否一致，以此来判断test是否成功。
+
+![go test中的user信息](http://img.blog.csdn.net/20171221142657518?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)![apiary中的user信息](http://img.blog.csdn.net/20171221142738677?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VybGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+### TestRegister 注册测试
+
+测试是否正确访问网址并返回预期结果（201 Created，注册成功）。
+
+### TestLogin 登录测试
+
+测试是否正确访问网址并返回预期结果（200 OK，登录成功）。
+
+### TestLogout 登出测试
+
+测试是否正确访问网址并返回预期结果（200 OK，登出成功）。
+
+### TestIsLogin 登录状态测试
+
+测试是否正确访问网址并返回登录状态（预期为200 OK，用户已登录）。
+
+### TestDeleteUser 删除用户测试
+
+测试是否正确访问网址并返回执行删除操作后的结果（预期为204 No content，已删除）。
+
 
 ## service测试
 
