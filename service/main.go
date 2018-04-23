@@ -1,18 +1,20 @@
 package main
+
 import (
-    "github.com/RowlingWu/agenda-service/service/entities"
-    "github.com/RowlingWu/agenda-service/service/service"
-    "os"
-    flag "github.com/spf13/pflag"
+	"entities"
+	"os"
+	"service"
+
+	flag "github.com/spf13/pflag"
 )
 
 const (
-  PORT string = "8080"
+	PORT string = "8080"
 )
 
 func main() {
-  port := os.Getenv("PORT")
-  if len(port) == 0 {
+	port := os.Getenv("PORT")
+	if len(port) == 0 {
 		port = PORT
 	}
 
